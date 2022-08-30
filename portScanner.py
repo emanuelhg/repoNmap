@@ -5,15 +5,16 @@ import socket
 nm = nmap.PortScanner()
 nm.scan('192.168.1.1-7', arguments='-sS -T4')
 
-# tomamos la lista de hosts
+#Armo el listado de Host.
 listado_host = [(x, nm[x]['status']['state']) for x in nm.all_hosts()]
 listado_up = []
 
-# tomamos solo los que están 'up'
+#Filtro los host que estan con estado "UP".
 for host, status in listado_host:
         if status in 'up':
             listado_up.append(host)
 
+#Recorro el listado de Host con su respectiva lista de puertos.
 for h in listado_up:
         print('IP: {}'.format(h))
         contador = 0
